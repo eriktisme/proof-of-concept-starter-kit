@@ -187,9 +187,6 @@ importers:
       '@internal/events-utils':
         specifier: workspace:*
         version: link:../../packages/events-utils
-      '@internal/lambda':
-        specifier: workspace:*
-        version: link:../../packages/lambda
       '@internal/tsconfig':
         specifier: workspace:*
         version: link:../../tooling/tsconfig
@@ -199,6 +196,9 @@ importers:
       '@types/node':
         specifier: ^22
         version: 22.10.5
+      jest:
+        specifier: ^29.7.0
+        version: 29.7.0(@types/node@22.10.5)(ts-node@10.9.2(@swc/core@1.7.23(@swc/helpers@0.5.15))(@types/node@22.10.5)(typescript@5.3.3))
 
   apps/app:
     dependencies:
@@ -246,9 +246,6 @@ importers:
       '@internal/cdk-utils':
         specifier: workspace:*
         version: link:../../packages/cdk-utils
-      '@internal/lambda':
-        specifier: workspace:*
-        version: link:../../packages/lambda
       '@internal/tsconfig':
         specifier: workspace:*
         version: link:../../tooling/tsconfig
@@ -263,12 +260,6 @@ importers:
         version: link:../../tooling/tsconfig
 
   packages/events-utils:
-    devDependencies:
-      '@internal/tsconfig':
-        specifier: workspace:*
-        version: link:../../tooling/tsconfig
-
-  packages/lambda:
     devDependencies:
       '@internal/tsconfig':
         specifier: workspace:*

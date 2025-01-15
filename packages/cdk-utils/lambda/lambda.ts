@@ -33,7 +33,7 @@ export class NodeJSLambda extends NodejsFunction {
         ...props.bundling,
       },
       logRetention: RetentionDays.FIVE_DAYS,
-      runtime: Runtime.NODEJS_20_X,
+      runtime: Runtime.NODEJS_22_X,
       timeout: props.timeout ?? Duration.seconds(15),
       tracing: Tracing.ACTIVE,
     })
