@@ -1,7 +1,8 @@
 {
   "name": "proof-of-concept-starter-kit",
   "scripts": {
-    "build": "turbo build",
+    "build": "turbo build --parallel",
+    "build:splash": "turbo build --filter=splash",
     "cdk": "turbo cdk",
     "dev": "turbo dev --parallel",
     "dev:app": "turbo dev --filter=app",
@@ -11,6 +12,7 @@
     "start:app": "turbo start --filter=app",
     "start:splash": "turbo start --filter=splash",
     "test": "turbo test --parallel",
+    "test:splash": "turbo test --filter=splash",
     "test-coverage": "turbo test-coverage --parallel",
     "test-e2e": "turbo test-e2e --parallel",
     "test-e2e:app": "turbo test-e2e --filter=app-e2e",
