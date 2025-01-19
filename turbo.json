@@ -46,6 +46,8 @@
       "cache": false
     },
     "typeCheck": {
+      "cache": true,
+      "inputs": ["$TURBO_DEFAULT$"],
       "outputs": ["node_modules/.cache/tsbuildinfo.json"]
     }
   }

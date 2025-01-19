@@ -8,7 +8,8 @@
     "lint": "next lint",
     "start": "next start",
     "test": "jest --passWithNoTests",
-    "test-coverage": "jest --coverage --passWithNoTests"
+    "test-coverage": "jest --coverage --passWithNoTests",
+    "typeCheck": "tsc --noEmit"
   },
   "dependencies": {
     "@t3-oss/env-nextjs": "^0.11.1",
