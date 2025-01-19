@@ -1,0 +1,26 @@
+{
+  "expo": {
+    "experiments": {
+      "reactCanary": true,
+      "typedRoutes": true,
+      "reactServerActions": true
+    },
+    "icon": "./assets/icon.png",
+    "ios": {
+      "supportsTablet": true
+    },
+    "name": "proof-of-concept-starter-kit",
+    "newArchEnabled": true,
+    "orientation": "portrait",
+    "plugins": ["expo-router"],
+    "scheme": "proof-of-concept-starter-kit",
+    "slug": "proof-of-concept-starter-kit",
+    "splash": {
+      "image": "./assets/splash-icon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "userInterfaceStyle": "light",
+    "version": "0.1.0"
+  }
+}
