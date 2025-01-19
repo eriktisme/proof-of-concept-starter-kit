@@ -21,7 +21,6 @@
   },
   "devDependencies": {
     "@internal/cdk-utils": "workspace:*",
-    "@internal/events-utils": "workspace:*",
     "@internal/tsconfig": "workspace:*",
     "@types/jest": "^29.5.12",
     "@types/node": "^22",
