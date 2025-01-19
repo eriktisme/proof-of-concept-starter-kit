@@ -1,0 +1,18 @@
+{
+  "name": "@internal/next-config",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "lint": "eslint '**/*.ts'"
+  },
+  "dependencies": {
+    "@next/bundle-analyzer": "^15.0.3",
+    "next-secure-headers": "^2.2.0"
+  },
+  "devDependencies": {
+    "@internal/tsconfig": "workspace:*"
+  },
+  "peerDependencies": {
+    "next": "^15.1.4"
+  }
+}

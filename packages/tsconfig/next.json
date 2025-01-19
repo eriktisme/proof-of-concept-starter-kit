@@ -12,17 +12,11 @@
     "jsx": "preserve",
     "noEmit": true,
     "paths": {
-      "@/*": [
-        "./*"
-      ],
-      "@internal/*": [
-        "../../packages/*"
-      ]
+      "@/*": ["./*"],
+      "@internal/*": ["../../packages/*"]
     }
   },
   "display": "Next.js",
-  "exclude": [
-    "node_modules"
-  ],
+  "exclude": ["node_modules"],
   "extends": "./base.json"
 }
