@@ -12,6 +12,7 @@ env:
   CI: true
   TURBO_TOKEN: ${{ secrets.VERCEL_TOKEN }}
   TURBO_TEAM: ${{ secrets.VERCEL_ORG_ID }}
+  NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: ${{ secrets.CLERK_PUBLISHABLE_KEY }}
 
 on:
   pull_request:
