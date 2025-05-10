@@ -1,41 +1,45 @@
-import type { StackProps } from '@internal/cdk-utils/stack'
-import { Stack } from '@internal/cdk-utils/stack'
-import type { Construct } from 'constructs'
-import { NodeJSLambda } from '@internal/cdk-utils/lambda'
-import { join } from 'path'
-import { FunctionUrlAuthType } from 'aws-cdk-lib/aws-lambda'
-import { EndpointType, LambdaRestApi } from 'aws-cdk-lib/aws-apigateway'
+import { OpenAPIHono } from '@hono/zod-openapi'
+import { handle } from 'hono/aws-lambda'
+import { secureHeaders } from 'hono/secure-headers'
+import type { Bindings } from './bindings'
+import { app as v1Routes } from './routes/v1'
+import { app as healthRoutes } from './routes/health'
+import { swaggerUI } from '@hono/swagger-ui'
 
-interface Props extends StackProps {
-  clerkPublishableKey: string
-  clerkSecretKey: string
-  databaseUrl: string
-}
+const app = new OpenAPIHono<{ Bindings: Bindings }>({
+  defaultHook: (result, c) => {
+    if (!result.success) {
+      return c.json({ success: false, errors: result.error.errors }, 422)
+    }
 
-export class ApiService extends Stack {
-  constructor(scope: Construct, id: string, props: Props) {
-    super(scope, id, props)
+    return c.json({ success: true }, 200)
+  },
+})
 
-    const handler = new NodeJSLambda(this, 'handler', {
-      entry: join(__dirname, './src/index.ts'),
-      environment: {
-        CLERK_PUBLISHABLE_KEY: props.clerkPublishableKey,
-        CLERK_SECRET_KEY: props.clerkSecretKey,
-        DATABASE_URL: props.databaseUrl,
-      },
-    })
+app.use(secureHeaders())
 
-    handler.addFunctionUrl({
-      authType: FunctionUrlAuthType.NONE,
-    })
+app.route('v1', v1Routes)
 
-    new LambdaRestApi(this, 'api', {
-      deployOptions: {
-        tracingEnabled: true,
-      },
-      endpointTypes: [EndpointType.REGIONAL],
-      handler,
-      restApiName: `${props.stage}-api`,
-    })
-  }
-}
+app.openAPIRegistry.registerComponent('securitySchemes', 'Bearer', {
+  type: 'http',
+  scheme: 'bearer',
+})
+
+app.get(
+  '/',
+  swaggerUI({
+    url: '/openapi',
+  })
+)
+
+app.doc('/openapi', {
+  openapi: '3.1.0',
+  info: {
+    version: '0.1.0',
+    title: 'Connect-CRM API',
+  },
+})
+
+app.route('/health', healthRoutes)
+
+export const handler = handle(app)

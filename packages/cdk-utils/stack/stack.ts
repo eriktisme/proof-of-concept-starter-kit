@@ -3,6 +3,7 @@ import { Stack as BaseStack } from 'aws-cdk-lib'
 import type { Construct } from 'constructs'
 
 export interface StackProps extends BaseStackProps {
+  projectName: string
   stage: string
 }
 
