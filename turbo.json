@@ -6,17 +6,23 @@
     "DATABASE_URL",
     "DATABASE_URL_UNPOOLED",
     "CLERK_SECRET_KEY",
-    "CLERK_WEBHOOK_SECRET",
-    "VERCEL_URL",
-    "NEXT_PUBLIC_VERCEL_URL",
-    "NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL",
-    "VERCEL_PROJECT_PRODUCTION_URL"
+    "CLERK_WEBHOOK_SECRET"
   ],
   "tasks": {
     "build": {
       "inputs": ["$TURBO_DEFAULT$", ".env"],
       "dependsOn": ["^build"],
       "outputs": [".next/**", "!.next/cache/**", "next-env.d.ts"]
+    },
+    "cdk": {
+      "inputs": ["$TURBO_DEFAULT$"],
+      "cache": true,
+      "outputs": ["cdk.out"]
+    },
+    "cdk:synth": {
+      "inputs": ["$TURBO_DEFAULT$"],
+      "cache": true,
+      "outputs": ["cdk.out"]
     },
     "dev": {
       "inputs": ["$TURBO_DEFAULT$", ".env"],
@@ -36,12 +42,12 @@
       "inputs": ["$TURBO_DEFAULT$", ".env"],
       "cache": true
     },
-    "test-coverage": {
+    "test:coverage": {
       "inputs": ["$TURBO_DEFAULT$", ".env"],
       "cache": true,
       "outputs": ["coverage"]
     },
-    "test-e2e": {
+    "test:e2e": {
       "inputs": ["$TURBO_DEFAULT$", ".env"],
       "cache": false
     },

@@ -1,8 +1,8 @@
 name: Production Deployment
 
 permissions:
-  contents: read
   actions: read
+  contents: read
   id-token: write
 
 env:
@@ -11,6 +11,10 @@ env:
   VERCEL_PROJECT_ID: ${{ secrets.VERCEL_APP_PROJECT_ID }}
   TURBO_TOKEN: ${{ secrets.VERCEL_TOKEN }}
   TURBO_TEAM: ${{ secrets.VERCEL_ORG_ID }}
+  CLERK_PUBLISHABLE_KEY: ${{ secrets.CLERK_PUBLISHABLE_KEY }}
+  CLERK_SECRET_KEY: ${{ secrets.CLERK_SECRET_KEY }}
+  DATABASE_URL: ${{ secrets.DATABASE_URL }}
+  DOMAIN_NAME: ${{ secrets.DOMAIN_NAME }}
   NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY: ${{ secrets.CLERK_PUBLISHABLE_KEY }}
 
 on:
@@ -109,19 +113,13 @@ jobs:
 
       - uses: aws-actions/configure-aws-credentials@v4
         with:
-          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/treasury-deploy-role
+          role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/proof-of-concept-deploy-role
           aws-region: eu-west-1
 
       - run: pnpm cdk:migrations -- deploy --all --require-approval never
-        env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
-          CLERK_SECRET_KEY: ${{ secrets.CLERK_SECRET_KEY }}
-          CLERK_PUBLISHABLE_KEY: ${{ secrets.CLERK_PUBLISHABLE_KEY }}
+
+      - run: pnpm cdk:network -- deploy --all --require-approval never
 
       - run: pnpm cdk:api -- deploy --all --require-approval never
-        env:
-          DATABASE_URL: ${{ secrets.DATABASE_URL }}
-          CLERK_SECRET_KEY: ${{ secrets.CLERK_SECRET_KEY }}
-          CLERK_PUBLISHABLE_KEY: ${{ secrets.CLERK_PUBLISHABLE_KEY }}
 
       - run: pnpm vercel deploy --prod --token=${{ secrets.VERCEL_TOKEN }}

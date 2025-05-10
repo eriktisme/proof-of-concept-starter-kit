@@ -9,7 +9,7 @@
     "cdk": "cdk",
     "lint": "eslint '**/*.ts'",
     "test": "jest --passWithNoTests",
-    "test-coverage": "jest --coverage --passWithNoTests",
+    "test:coverage": "jest --coverage --passWithNoTests",
     "typeCheck": "tsc --noEmit",
     "watch": "tsc -w"
   },
