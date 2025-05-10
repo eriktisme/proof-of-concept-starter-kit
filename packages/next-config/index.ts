@@ -36,13 +36,8 @@ export const config: NextConfig = {
     ignoreDuringBuilds: true,
   },
 
-  experimental: {
-    turbo: {
-      //
-    },
-    reactCompiler: {
-      compilationMode: 'all',
-    },
+  turbopack: {
+    //
   },
 
   poweredByHeader: false,

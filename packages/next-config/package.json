@@ -7,13 +7,10 @@
     "typeCheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@next/bundle-analyzer": "^15.0.3",
+    "@next/bundle-analyzer": "^15.3.2",
     "next-secure-headers": "^2.2.0"
   },
   "devDependencies": {
     "@internal/tsconfig": "workspace:*"
-  },
-  "peerDependencies": {
-    "next": "^15.1.4"
   }
 }

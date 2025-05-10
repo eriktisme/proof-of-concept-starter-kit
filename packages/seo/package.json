@@ -8,8 +8,5 @@
   },
   "devDependencies": {
     "@internal/tsconfig": "workspace:*"
-  },
-  "peerDependencies": {
-    "next": "^15.0.3"
   }
 }
