@@ -8,6 +8,7 @@
     "experimentalDecorators": true,
     "inlineSourceMap": true,
     "inlineSources": true,
+    "noEmit": true,
     "noFallthroughCasesInSwitch": false,
     "noImplicitAny": true,
     "noImplicitReturns": true,
